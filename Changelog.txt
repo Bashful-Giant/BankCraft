@@ -1,0 +1,22 @@
+Changelog- Last Updated 05/12/13
+
+---
+0.0.2 (05/12/13)
+Renamed "Blocks" class to "Block"
+Renamed "Items" class to "Item"
+Added Changelog
+Added crafting recipies for
+-ATM
+-Safe Door (Open)- WIP, WILL change soon(tm)
+-Mint
+-Printing Machine
+-Cash Register
+-Credit Card
+-Piggy Bank
+Mince Pie Total: 7
+---
+0.0.1 (04/12/15
+BankCraft Begins
+Added Blocks, Items and Mod Infrastructure
+Mince Pie Total: 3
+---

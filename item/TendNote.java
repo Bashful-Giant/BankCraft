@@ -1,14 +1,14 @@
-package bashful.bankcraft.items;
+package bashful.bankcraft.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.creativetab.CreativeTabs;
-public class TwocCoin extends Item {
+public class TendNote extends Item {
 
-        public TwocCoin(int id) {
+        public TendNote(int id) {
                 super(id);
                 setMaxStackSize(64);
                 setCreativeTab(CreativeTabs.tabMaterials);
-                setUnlocalizedName("TwocCoin");
+                setUnlocalizedName("TendNote");
         }
 
 }

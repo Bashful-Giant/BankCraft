@@ -1,4 +1,4 @@
-package bashful.bankcraft.items;
+package bashful.bankcraft.item;
 import net.minecraft.item.Item;
 import net.minecraft.creativetab.CreativeTabs;
 public class FivedNote extends Item {

@@ -1,14 +1,14 @@
-package bashful.bankcraft.items;
+package bashful.bankcraft.item;
 import net.minecraft.item.Item;
 import net.minecraft.creativetab.CreativeTabs;
 
-public class FivecCoin extends Item {
+public class RawPiggyBank extends Item {
 
-        public FivecCoin(int id) {
+        public RawPiggyBank(int id) {
                 super(id);
                 setMaxStackSize(64);
                 setCreativeTab(CreativeTabs.tabMaterials);
-                setUnlocalizedName("FivecCoin");
+                setUnlocalizedName("RawPiggyBank");
         }
 
 }

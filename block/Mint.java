@@ -1,18 +1,17 @@
-package bashful.bankcraft.blocks;
+package bashful.bankcraft.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 
   
-public class PiggyBank extends Block {
-	
-	 public PiggyBank (int id, Material material)
+public class Mint extends Block {
+	 public Mint (int id, Material material)
      {
              super(id, material);
              setCreativeTab(CreativeTabs.tabMaterials);
-             setUnlocalizedName("PiggyBank");
-             setHardness(1.0F); 
+             setUnlocalizedName("Mint");
+             setHardness(1.0F);
              setStepSound(Block.soundStoneFootstep);
 
      }

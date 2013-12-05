@@ -1,4 +1,4 @@
-package bashful.bankcraft.items;
+package bashful.bankcraft.item;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
