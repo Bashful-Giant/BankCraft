@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -28,35 +29,38 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import bashful.bankcraft.block.*;
 import bashful.bankcraft.item.*;
+import bashful.bankcraft.tileentity.*;
 
 
-@Mod(modid="Bankcraft", name="Bankcraft", version="0.0.1")
+@Mod(modid="Bankcraft", name="Bankcraft", version="0.0.3")
 @NetworkMod(clientSideRequired=true)
 public class Bankcraft {
+	public static final String modid = "Bashful_Bankcraft";
 	//Blocks
 	public static Block ATM = new ATM(2550, Material.rock);
+	public static TileEntity TileEntityCashRegister = new TileEntityCashRegister();
 	public static Block SafeDoorLocked = new SafeDoorLocked(2551, Material.rock);
 	public static Block SafeDoorOpen = new SafeDoorOpen(2552, Material.rock);
 	public static Block Mint = new Mint(2553, Material.rock);
 	public static Block PiggyBank = new PiggyBank(2554, Material.rock);
 	public static Block Print = new Print(2555, Material.rock);
-	//Items
 	public static Block CashRegister = new CashRegister(2556, Material.rock);
-	public static Item CreditCard = new CreditCard(2557).setTextureName("m3:IronPanel");
-	public static Item FiftycCoin = new FiftycCoin(2558).setTextureName("m3:IronPanel");
-	public static Item FiftydNote = new FiftydNote(2559).setTextureName("m3:IronPanel");
-	public static Item FivecCoin = new FivecCoin(2560).setTextureName("m3:IronPanel");
-	public static Item FivedNote = new FivedNote(2561).setTextureName("m3:IronPanel");
-	public static Item HundreddNote = new HundreddNote(2562).setTextureName("m3:IronPanel");
-	public static Item OnecCoin = new OnecCoin(2563).setTextureName("m3:IronPanel");
-	public static Item OnedNote = new OnedNote(2564).setTextureName("m3:IronPanel");
-	public static Item TencCoin = new TencCoin(2565).setTextureName("m3:IronPanel");
-	public static Item TendNote = new TendNote(2566).setTextureName("m3:IronPanel");
-	public static Item TwentycCoin = new TwentycCoin(2567).setTextureName("m3:IronPanel");
-	public static Item TwentydNote = new TwentydNote(2568).setTextureName("m3:IronPanel");
-	public static Item TwocCoin = new TwocCoin(2569).setTextureName("m3:IronPanel");
-	public static Item RawPiggyBank = new RawPiggyBank(2560).setTextureName("m3:IronPanel");
-	
+	//Items
+	public static Item CreditCard = new CreditCard(2557).setTextureName("Bankcraft:CreditCard");
+	public static Item FiftycCoin = new FiftycCoin(2558).setTextureName("Bankcraft:FiftycCoin");
+	public static Item FiftydNote = new FiftydNote(2559).setTextureName("Bankcraft:FiftydNote");
+	public static Item FivecCoin = new FivecCoin(2560).setTextureName("Bankcraft:FivecCoin");
+	public static Item FivedNote = new FivedNote(2561).setTextureName("Bankcraft:FivedNote");
+	public static Item HundreddNote = new HundreddNote(2562).setTextureName("Bankcraft:HundreddNote");
+	public static Item OnecCoin = new OnecCoin(2563).setTextureName("Bankcraft:OnecCoin");
+	public static Item OnedNote = new OnedNote(2564).setTextureName("Bankcraft:OnedNote");
+	public static Item TencCoin = new TencCoin(2565).setTextureName("Bankcraft:TencCoin");
+	public static Item TendNote = new TendNote(2566).setTextureName("Bankcraft:TendNote");
+	public static Item TwentycCoin = new TwentycCoin(2567).setTextureName("Bankcraft:TwentycCoin");
+	public static Item TwentydNote = new TwentydNote(2568).setTextureName("Bankcraft:TwentydNote");
+	public static Item TwocCoin = new TwocCoin(2569).setTextureName("Bankcraft:TwocCoin");
+	public static Item RawPiggyBank = new RawPiggyBank(2570).setTextureName("Bankcraft:RawPiggyBank");
+	public static Item Coin = new Coin(2571);
 	
         // The instance of your mod that Forge uses.
         @Instance(value = "Bankcraft")
@@ -96,6 +100,11 @@ public class Bankcraft {
                 GameRegistry.registerItem(TwentydNote, "TwentydNote"); LanguageRegistry.addName(TwentydNote, "Twenty Dollar Note");
                 GameRegistry.registerItem(TwocCoin, "TwocCoin"); LanguageRegistry.addName(TwocCoin, "Two Cent Coin");
                 GameRegistry.registerItem(RawPiggyBank, "RawPiggybank"); LanguageRegistry.addName(RawPiggyBank, "Uncooked Piggy Bank");
+                GameRegistry.registerItem(Coin, "Coin"); LanguageRegistry.addName(Coin, "Coin");
+                
+                //entities
+                GameRegistry.registerTileEntity(CashRegister.class, "TileEntityCashRegister"); LanguageRegistry.addName(TileEntityCashRegister, "TileEntityCashRegister");
+                               
                 
                 //Recipes
                 ItemStack ATMStack = new ItemStack(ATM);
@@ -105,6 +114,7 @@ public class Bankcraft {
                 ItemStack PrintStack = new ItemStack(Print);
                 ItemStack CashRegisterStack = new ItemStack(CashRegister);
                 ItemStack CreditCardStack = new ItemStack(CreditCard);
+                ItemStack PiggyBankStack = new ItemStack(PiggyBank);
                 ItemStack RawPiggyBankStack = new ItemStack(RawPiggyBank);
                 ItemStack IronStack = new ItemStack(Item.ingotIron);
                 ItemStack EnderchestStack = new ItemStack(Block.enderChest);
@@ -121,8 +131,13 @@ public class Bankcraft {
                 GameRegistry.addRecipe (SafeDoorOpenStack, "III", "IdI", "III",'I', IronBlockStack, 'd', DoorStack);
                 GameRegistry.addRecipe (MintStack, "iri", "rdr", "iri", 'i', IronStack, 'r', RedstoneStack, 'd', DispenserStack);
                 GameRegistry.addRecipe(PrintStack, "IrI", "rdr", "IrI", 'I', IronBlockStack, 'r', RedstoneStack, 'd', DispenserStack);
-                GameRegistry.addRecipe(CashRegisterStack, "pgp", "pcp", "prp", 'p', PlankStack, 'g', GlassStack, 'r', RedstoneStack);
+                GameRegistry.addRecipe(CashRegisterStack, "pgp", "pcp", "prp", 'p', PlankStack, 'g', GlassStack, 'r', RedstoneStack, 'c', ChestStack);
+                GameRegistry.addRecipe(CashRegisterStack, "pgp", "pcp", "prp", 'p', PlankStack, 'g', GlassStack, 'r', RedstoneStack, 'c', ChestTStack);
                 GameRegistry.addRecipe(RawPiggyBankStack, "ccc", "c c", "ccc", 'c', ClayStack);
+                GameRegistry.addSmelting(RawPiggyBank.itemID, PiggyBankStack, 0f);
+                //debug recipes
+                
+                
         }
        
         @EventHandler

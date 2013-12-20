@@ -1,5 +1,12 @@
-Changelog- Last Updated 05/12/13
+Changelog- Last Updated 20/12/13
 
+---
+0.0.3 (20/12/13)
+Huge infrastructure changes in order to aid future compatibility (WIP, broken many files)
+Started Metadata compress ion of identical items. Looking at you, Coins!
+ID's will soon be Forge compatible
+Piggy Bank now crafted from Clay Piggy Bank, placed in a furnace
+Mince Pie total: 29
 ---
 0.0.2 (05/12/13)
 Renamed "Blocks" class to "Block"
